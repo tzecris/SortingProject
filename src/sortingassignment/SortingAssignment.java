@@ -39,24 +39,24 @@ public class SortingAssignment {
     }
 
     public static void main(String[] args) {
-        ArrayList<Tshirt> mytshirts = (ArrayList<Tshirt>) generateTShirts(10);
+        ArrayList<Tshirt> mytshirts = (ArrayList<Tshirt>) generateTShirts(40);
         showTshirts(mytshirts);
         QuickSort qs = new QuickSort();
         BubbleSort bs = new BubbleSort();
         BucketSort bus = new BucketSort();
-        qs.sort(mytshirts, 0, mytshirts.size() - 1, 2, 1);
+//        qs.sort(mytshirts, 0, mytshirts.size() - 1, 2, 1);
 //        qs.sort(mytshirts, 0, mytshirts.size() - 1, 2, 1);
 //        bs.sort(mytshirts, 2);
 //        bs.sort(mytshirts, 3, 2);
 //        bus.sort(mytshirts, 2, 1);
 //        qs.sort(mytshirts, 0, mytshirts.size() - 1, 2);
 //        qs.sort(mytshirts, 0, mytshirts.size() - 1, 3, 2);
-        System.out.println("Show after sort.");
-        showTshirts(mytshirts);
-        qs.sort(mytshirts, 0, mytshirts.size() - 1, 1, 1);
+//        System.out.println("Show after sort.");
+//        showTshirts(mytshirts);
+//        qs.sort(mytshirts, 0, mytshirts.size() - 1, 1, 1);
 
         System.out.println("Show after sort.");
-        showTshirts(mytshirts);
+        showTshirts(bus.completeSort(mytshirts, 1));
     }
 
 }
