@@ -4,7 +4,7 @@ Java project about sorting algorithms.
 
 Import in Netbeans
 Selct File> New Project> Java> Java Project with existing resources.
-In the next step selrct src folder.
+In the next step select src folder.
 
 Clean and build project.
 Run.
