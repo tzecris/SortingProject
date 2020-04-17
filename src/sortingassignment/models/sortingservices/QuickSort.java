@@ -3,28 +3,25 @@ package sortingassignment.models.sortingservices;
 import java.util.ArrayList;
 import sortingassignment.models.Tshirt;
 
-/**
- *
- * @author Admin
- */
-public class QuickSort {
+public class QuickSort extends Sort {
 
-    public void sort(ArrayList<Tshirt> arr, int low, int high, int typeOfSort, int type) {
-        //typeOfShort 1= size
-        //typeOfShort 2= color
-        //typeOfShort 3= fabric
-        //type 1= ascending
-        //type 2= descending
+    @Override
+    public ArrayList<Tshirt> sort(ArrayList<Tshirt> array, int typeOfSort, int sortOrder) {
+        quickSort(array, 0, array.size() - 1, typeOfSort, sortOrder);
+        return array;
+    }
+
+    public void quickSort(ArrayList<Tshirt> arr, int low, int high, int typeOfSort, int sortOrder) {
 
         if (low < high) {
             /* pi is partitioning index, arr[pi] is
               now at right place */
-            int pi = partition(arr, low, high, typeOfSort, type);
+            int pi = partition(arr, low, high, typeOfSort, sortOrder);
 
             // Recursively sort elements before
             // partition and after partition
-            sort(arr, low, pi - 1, typeOfSort, type);
-            sort(arr, pi + 1, high, typeOfSort, type);
+            quickSort(arr, low, pi - 1, typeOfSort, sortOrder);
+            quickSort(arr, pi + 1, high, typeOfSort, sortOrder);
         }
     }
 
@@ -33,14 +30,14 @@ public class QuickSort {
         Tshirt pivot = arr.get(high);
         switch (typeOfSort) {
             case 1:
-                int p = pivot.getSize().ordinal();
+                int ps = pivot.getSize().ordinal();
                 i = (low - 1); // index of smaller element
 
                 for (int j = low; j < high; j++) {
                     // If current element is smaller than the pivot
                     if (type == 1) {
 
-                        if (arr.get(j).getSize().ordinal() < p) {
+                        if (arr.get(j).getSize().ordinal() < ps) {
                             i++;
 
                             // swap arr[i] and arr[j]
@@ -49,7 +46,7 @@ public class QuickSort {
                             arr.set(j, temp);
                         }
                     } else {
-                        if (arr.get(j).getSize().ordinal() > p) {
+                        if (arr.get(j).getSize().ordinal() > ps) {
                             i++;
 
                             // swap arr[i] and arr[j]
@@ -59,48 +56,76 @@ public class QuickSort {
 
                         }
                     }
-                    }
-                    // swap arr[i+1] and arr[high] (or pivot)
-                    Tshirt tempS = arr.get(i + 1);
-                    arr.set(i + 1, arr.get(high));
-                    arr.set(high, tempS);
+                }
+                // swap arr[i+1] and arr[high] (or pivot)
+                Tshirt tempS = arr.get(i + 1);
+                arr.set(i + 1, arr.get(high));
+                arr.set(high, tempS);
 
                 break;
 
             case 2:
                 int pc = pivot.getColor().ordinal();
                 i = (low - 1); // index of smaller element
+
                 for (int j = low; j < high; j++) {
                     // If current element is smaller than the pivot
-                    if (arr.get(j).getColor().ordinal() < pc) {
-                        i++;
+                    if (type == 1) {
 
-                        // swap arr[i] and arr[j]
-                        Tshirt temp = arr.get(i);
-                        arr.set(i, arr.get(j));
-                        arr.set(j, temp);
+                        if (arr.get(j).getSize().ordinal() < pc) {
+                            i++;
+
+                            // swap arr[i] and arr[j]
+                            Tshirt temp = arr.get(i);
+                            arr.set(i, arr.get(j));
+                            arr.set(j, temp);
+                        }
+                    } else {
+                        if (arr.get(j).getSize().ordinal() > pc) {
+                            i++;
+
+                            // swap arr[i] and arr[j]
+                            Tshirt temp = arr.get(i);
+                            arr.set(i, arr.get(j));
+                            arr.set(j, temp);
+
+                        }
                     }
                 }
-//                // swap arr[i+1] and arr[high] (or pivot)
-                Tshirt temp1 = arr.get(i + 1);
+                // swap arr[i+1] and arr[high] (or pivot)
+                Tshirt tempC = arr.get(i + 1);
                 arr.set(i + 1, arr.get(high));
-                arr.set(high, temp1);
+                arr.set(high, tempC);
                 break;
             case 3:
                 int pf = pivot.getFabric().ordinal();
                 i = (low - 1); // index of smaller element
+
                 for (int j = low; j < high; j++) {
                     // If current element is smaller than the pivot
-                    if (arr.get(j).getFabric().ordinal() < pf) {
-                        i++;
+                    if (type == 1) {
 
-                        // swap arr[i] and arr[j]
-                        Tshirt temp = arr.get(i);
-                        arr.set(i, arr.get(j));
-                        arr.set(j, temp);
+                        if (arr.get(j).getFabric().ordinal() < pf) {
+                            i++;
+
+                            // swap arr[i] and arr[j]
+                            Tshirt temp = arr.get(i);
+                            arr.set(i, arr.get(j));
+                            arr.set(j, temp);
+                        }
+                    } else {
+                        if (arr.get(j).getFabric().ordinal() > pf) {
+                            i++;
+
+                            // swap arr[i] and arr[j]
+                            Tshirt temp = arr.get(i);
+                            arr.set(i, arr.get(j));
+                            arr.set(j, temp);
+
+                        }
                     }
                 }
-//                // swap arr[i+1] and arr[high] (or pivot)
+                // swap arr[i+1] and arr[high] (or pivot)
                 Tshirt tempF = arr.get(i + 1);
                 arr.set(i + 1, arr.get(high));
                 arr.set(high, tempF);
@@ -108,6 +133,6 @@ public class QuickSort {
         }
 
         return i + 1;
-        }
-
     }
+
+}
